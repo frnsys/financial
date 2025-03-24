@@ -20,9 +20,13 @@ where
 
     if newton_val.is_some() && same_sign(newton_val.unwrap(), x) {
         newton_val
-    } else if let Some(b_pos) = find_bounds(x, Bounds::new_positive(), f, bounds_search_expansion_factor) {
+    } else if let Some(b_pos) =
+        find_bounds(x, Bounds::new_positive(), f, bounds_search_expansion_factor)
+    {
         bisection(b_pos, f)
-    } else if let Some(b_neg) = find_bounds(x, Bounds::new_negative(), f, bounds_search_expansion_factor) {
+    } else if let Some(b_neg) =
+        find_bounds(x, Bounds::new_negative(), f, bounds_search_expansion_factor)
+    {
         bisection(b_neg, f)
     } else {
         None
@@ -83,7 +87,7 @@ where
                     } else if fafmid > 0. {
                         a = mid;
                     } else {
-                        panic!("it should never get here");
+                        return None;
                     }
                 }
             }
